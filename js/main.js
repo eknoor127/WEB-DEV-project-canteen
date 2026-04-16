@@ -23,11 +23,10 @@ window.addEventListener('load', () => {
 
 // ==================== PROJECT MODAL ====================
 function initProjectModal() {
-    const openBtn = document.getElementById('projectInfoBtn');
     const modal = document.getElementById('projectModal');
     const closeBtn = document.getElementById('projectModalClose');
 
-    if (!openBtn || !modal || !closeBtn) return;
+    if (!modal || !closeBtn) return;
 
     const toggleModal = (show) => {
         modal.classList.toggle('active', show);
@@ -35,7 +34,6 @@ function initProjectModal() {
         document.body.classList.toggle('modal-open', show);
     };
 
-    openBtn.addEventListener('click', () => toggleModal(true));
     closeBtn.addEventListener('click', () => toggleModal(false));
     modal.addEventListener('click', (event) => {
         if (event.target === modal) toggleModal(false);
@@ -46,6 +44,8 @@ function initProjectModal() {
             toggleModal(false);
         }
     });
+
+    toggleModal(true);
 }
 
 // ==================== NAVBAR ====================
