@@ -65,6 +65,9 @@
                 <a href="menu.html" class="btn btn-secondary">
                     📋 View Menu
                 </a>
+                <button id="projectInfoBtn" class="btn btn-tertiary">
+                    📂 Project Info
+                </button>
             </div>
             <div class="hero-stats">
                 <div class="hero-stat">
@@ -341,6 +344,24 @@
 
     <!-- Back to Top -->
     <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <!-- Project Modal -->
+    <div class="modal-overlay" id="projectModal" aria-hidden="true">
+        <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+            <button class="modal-close" id="projectModalClose" aria-label="Close project modal">×</button>
+            <div class="modal-heading">
+                <div class="modal-icon">📁</div>
+                <div>
+                    <h2 id="projectModalTitle">Project Resources</h2>
+                    <p>Download the report or open the source code repository in a new tab.</p>
+                </div>
+            </div>
+            <div class="modal-buttons">
+                <a href="Reporting.pdf" download class="btn btn-primary">Download Report</a>
+                <a href="https://github.com/eknoor127/WEB-DEV-project-canteen" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">View Source Code</a>
+            </div>
+        </div>
+    </div>
 
     <!-- Toast Notification -->
     <div class="toast" id="toast">

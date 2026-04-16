@@ -16,9 +16,37 @@ window.addEventListener('load', () => {
     }
     updateCartUI();
     initScrollAnimations();
+    initProjectModal();
     updateDailySpecial();
     startCutoffTimer();
 });
+
+// ==================== PROJECT MODAL ====================
+function initProjectModal() {
+    const openBtn = document.getElementById('projectInfoBtn');
+    const modal = document.getElementById('projectModal');
+    const closeBtn = document.getElementById('projectModalClose');
+
+    if (!openBtn || !modal || !closeBtn) return;
+
+    const toggleModal = (show) => {
+        modal.classList.toggle('active', show);
+        modal.setAttribute('aria-hidden', show ? 'false' : 'true');
+        document.body.classList.toggle('modal-open', show);
+    };
+
+    openBtn.addEventListener('click', () => toggleModal(true));
+    closeBtn.addEventListener('click', () => toggleModal(false));
+    modal.addEventListener('click', (event) => {
+        if (event.target === modal) toggleModal(false);
+    });
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.classList.contains('active')) {
+            toggleModal(false);
+        }
+    });
+}
 
 // ==================== NAVBAR ====================
 const navbar = document.getElementById('navbar');
