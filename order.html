@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Place Order - SGGSCC Canteen</title>
+    <link rel="stylesheet" href="css/style.css?v=2.0.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍛</text></svg>">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-emoji">🍛</span>
+            <div class="logo-text">
+                SGGSCC Canteen
+                <span>Sri Guru Gobind Singh College</span>
+            </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html">Menu</a></li>
+            <li><a href="order.html" class="active">Order</a></li>
+            <li><a href="status.html">Track Order</a></li>
+            <li><a href="dashboard.html">Staff</a></li>
+            <li><a href="guidelines.html">Guidelines</a></li>
+            <li><a href="order.html" class="nav-cta">Order Now</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- Order Page -->
+    <div class="order-page">
+        <div class="section-header">
+            <div class="section-badge">Place Your Order</div>
+            <h2>Almost There</h2>
+            <p>Fill in your details, choose your time, and your food will be waiting!</p>
+        </div>
+
+        <!-- Reorder Section -->
+        <div class="reorder-section" style="max-width: 1100px; margin: 0 auto 25px;">
+            <h4>🔄 Repeat Last Order</h4>
+            <div class="reorder-items">
+                <div class="reorder-chip" onclick="quickReorder('Rajma Chawal', 40, '🍛')">🍛 Rajma Chawal - ₹40</div>
+                <div class="reorder-chip" onclick="quickReorder('Tea', 10, '☕')">☕ Tea - ₹10</div>
+                <div class="reorder-chip" onclick="quickReorder('Samosa', 10, '🔺')">🔺 Samosa x2 - ₹20</div>
+            </div>
+        </div>
+
+        <div class="order-container">
+            <!-- Order Form -->
+            <div class="order-form-section">
+                <h3 style="font-family:'Baloo 2',cursive; font-size:1.3rem; margin-bottom:20px;">📝 Your Details</h3>
+                
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" class="form-input" id="orderName" placeholder="e.g. Preet Sharma">
+                </div>
+
+                <div class="form-group">
+                    <label>Student ID <span class="required">*</span></label>
+                    <input type="text" class="form-input" id="orderStudentId" placeholder="e.g. 25129001">
+                </div>
+
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="tel" class="form-input" id="orderPhone" placeholder="e.g. 9876543210">
+                </div>
+
+                <div class="form-group">
+                    <label>Pickup Location <span class="required">*</span></label>
+                    <select class="form-input" id="orderLocation">
+                        <option value="">Select pickup point</option>
+                        <option value="counter-1">Counter 1 (Main)</option>
+                        <option value="counter-2">Counter 2 (Side)</option>
+                        <option value="table">Table Delivery (Table #)</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="tableNumberGroup" style="display:none;">
+                    <label>Table / Seat Number</label>
+                    <input type="text" class="form-input" id="orderTable" placeholder="e.g. Table 5, Seat 3">
+                </div>
+
+                <div class="form-group">
+                    <label>⏰ Choose Pickup Time <span class="required">*</span></label>
+                    <div class="time-slots" id="timeSlots">
+                        <div class="time-slot" onclick="selectTime(this)">10:00 AM</div>
+                        <div class="time-slot" onclick="selectTime(this)">10:30 AM</div>
+                        <div class="time-slot" onclick="selectTime(this)">11:00 AM</div>
+                        <div class="time-slot" onclick="selectTime(this)">11:30 AM</div>
+                        <div class="time-slot" onclick="selectTime(this)">12:00 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)" style="position:relative;">
+                            12:30 PM
+                            <span style="position:absolute; top:-8px; right:-5px; font-size:0.6rem; background:var(--primary); color:white; padding:1px 5px; border-radius:4px;">RUSH</span>
+                        </div>
+                        <div class="time-slot" onclick="selectTime(this)" style="position:relative;">
+                            1:00 PM
+                            <span style="position:absolute; top:-8px; right:-5px; font-size:0.6rem; background:var(--primary); color:white; padding:1px 5px; border-radius:4px;">RUSH</span>
+                        </div>
+                        <div class="time-slot" onclick="selectTime(this)">1:30 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">2:00 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">2:30 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">3:00 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">3:30 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">4:00 PM</div>
+                        <div class="time-slot" onclick="selectTime(this)">4:30 PM</div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>💳 Payment Method</label>
+                    <div class="payment-options">
+                        <div class="payment-option selected" onclick="selectPayment(this)" data-method="counter">
+                            <span class="pay-emoji">💵</span>
+                            Pay at Counter
+                        </div>
+                        <div class="payment-option" onclick="selectPayment(this)" data-method="upi">
+                            <span class="pay-emoji">📱</span>
+                            UPI at Pickup
+                        </div>
+                        <div class="payment-option" onclick="selectPayment(this)" data-method="later">
+                            <span class="pay-emoji">⏰</span>
+                            Pay Later (4hrs)
+                        </div>
+                    </div>
+                </div>
+
+                <div class="no-penalty-banner">
+                    <span class="np-emoji">🛡️</span>
+                    <div>
+                        <strong>No-Penalty Pay Later:</strong> Battery died? Forgot wallet? Pay within 4 hours — no extra charges. We trust our students!
+                    </div>
+                </div>
+
+                <div class="form-group" style="margin-top: 20px;">
+                    <label>Special Instructions (optional)</label>
+                    <textarea class="form-input" id="orderNotes" placeholder="e.g. Extra spicy, no onions, pack separately..." style="min-height:70px;"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>🎟️ Coupon Code</label>
+                    <div style="display:flex; gap:10px;">
+                        <input type="text" class="form-input" id="couponCode" placeholder="e.g. SGGSCC50" style="flex:1;">
+                        <button class="btn btn-secondary" onclick="applyCoupon()" style="white-space:nowrap;">Apply</button>
+                    </div>
+                </div>
+
+                <button class="btn btn-primary" onclick="placeOrder()" style="width:100%; justify-content:center; margin-top: 10px; padding: 16px;">
+                    🎉 Place Order
+                </button>
+            </div>
+
+            <!-- Cart Sidebar -->
+            <div class="cart-sidebar" id="cartSidebar">
+                <h3>🛒 Your Cart</h3>
+                <div id="cartItems">
+                    <div class="cart-empty">
+                        <span class="empty-emoji">🍽️</span>
+                        <p>Your cart is empty!</p>
+                        <a href="menu.html" style="color: var(--primary); font-weight: 600; text-decoration: none;">Browse Menu →</a>
+                    </div>
+                </div>
+                <div class="cart-total" id="cartTotal" style="display:none;">
+                    <span class="total-label">Total</span>
+                    <span class="total-price" id="totalPrice">₹0</span>
+                </div>
+                <div id="cartDiscount" style="display:none; margin-top:10px; padding:10px 15px; background:#E8F5E9; border-radius:10px; font-size:0.85rem; color:#2E7D32; font-weight:600;">
+                    🎉 Coupon applied! You saved ₹<span id="discountAmount">0</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Order Cutoff Timer -->
+    <div class="cutoff-timer" id="cutoffTimer">
+        ⏰ Orders close in: <span class="timer-text" id="cutoffTime">03:42:00</span>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">🍛 SGGSCC Canteen</div>
+                <p>Fresh, homely, pocket-friendly food for SGGSCC students.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="order.html">Place Order</a>
+                <a href="status.html">Track Order</a>
+            </div>
+            <div class="footer-col">
+                <h4>More</h4>
+                <a href="dashboard.html">Staff Dashboard</a>
+                <a href="guidelines.html">Student Guidelines</a>
+            </div>
+            <div class="footer-col">
+                <h4>Timings</h4>
+                <a href="#">Mon–Sat: 9AM–5PM</a>
+                <a href="#">Sunday: Closed</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SGGSCC Canteen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-emoji">✅</span>
+        <span class="toast-msg" id="toastMsg">Action completed!</span>
+    </div>
+
+    <!-- Order Confirmation Modal -->
+    <div class="modal-overlay" id="orderConfirmModal">
+        <div class="modal" style="text-align:center; position:relative;">
+            <button class="close-modal" onclick="closeModal('orderConfirmModal')">&times;</button>
+            <div style="font-size:4rem; margin-bottom:15px;">🎉</div>
+            <h2>Order Placed Successfully!</h2>
+            <div class="token-display" style="margin:20px 0;">
+                <div class="token-number" id="confirmToken">CANTEEN-104</div>
+                <p>Show this token at the counter</p>
+            </div>
+            <div style="background: var(--cream); border-radius: 14px; padding: 15px; margin: 15px 0; text-align: left;">
+                <p style="font-size:0.9rem; margin-bottom:5px;"><strong>Pickup Time:</strong> <span id="confirmTime">12:00 PM</span></p>
+                <p style="font-size:0.9rem; margin-bottom:5px;"><strong>Location:</strong> <span id="confirmLocation">Counter 1</span></p>
+                <p style="font-size:0.9rem;"><strong>Total:</strong> <span id="confirmTotal" style="color: var(--primary); font-weight:700;">₹0</span></p>
+            </div>
+            <div class="no-penalty-banner" style="margin-bottom:15px;">
+                <span class="np-emoji">📱</span>
+                <div style="font-size:0.82rem;">You can track your order on the <a href="status.html" style="color: var(--secondary-dark); font-weight:700;">Track Order</a> page</div>
+            </div>
+            <a href="status.html" class="btn btn-green" style="width:100%; justify-content:center;">
+                📍 Track My Order
+            </a>
+        </div>
+    </div>
+
+    <!-- Registration Modal -->
+    <div class="modal-overlay" id="regModal">
+        <div class="modal" style="position:relative;">
+            <button class="close-modal" onclick="closeModal('regModal')">&times;</button>
+            <h2>📝 Quick Registration</h2>
+            <p style="text-align:center; color:var(--text-light); margin-bottom:20px; font-size:0.9rem;">One-time setup. Takes 30 seconds!</p>
+            
+            <div class="reg-progress">
+                <div class="prog-dot active" id="progDot1"></div>
+                <div class="prog-dot" id="progDot2"></div>
+                <div class="prog-dot" id="progDot3"></div>
+            </div>
+
+            <div class="reg-step active" id="regStep1">
+                <div class="form-group">
+                    <label>Full Name <span class="required">*</span></label>
+                    <input type="text" class="form-input" id="regName" placeholder="Your full name">
+                </div>
+                <div class="form-group">
+                    <label>Student ID <span class="required">*</span></label>
+                    <input type="text" class="form-input" id="regStudentId" placeholder="e.g. 25129001">
+                </div>
+                <button class="btn btn-primary" onclick="nextRegStep(2)" style="width:100%; justify-content:center;">Next →</button>
+            </div>
+
+            <div class="reg-step" id="regStep2">
+                <div class="form-group">
+                    <label>Phone Number <span class="required">*</span></label>
+                    <input type="tel" class="form-input" id="regPhone" placeholder="e.g. 9876543210">
+                </div>
+                <div class="form-group">
+                    <label>Course</label>
+                    <select class="form-input" id="regCourse">
+                        <option value="">Select your course</option>
+                        <option value="bcom">B.Com</option>
+                        <option value="bcom-h">B.Com (Hons)</option>
+                        <option value="ba-eco">BA Economics (Hons)</option>
+                        <option value="bba">BBA</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div style="display:flex; gap:10px;">
+                    <button class="btn btn-secondary" onclick="nextRegStep(1)" style="flex:1; justify-content:center;">← Back</button>
+                    <button class="btn btn-primary" onclick="nextRegStep(3)" style="flex:1; justify-content:center;">Next →</button>
+                </div>
+            </div>
+
+            <div class="reg-step" id="regStep3">
+                <div style="text-align:center; padding: 20px 0;">
+                    <div style="font-size: 4rem; margin-bottom:15px;">✅</div>
+                    <h3 style="font-family:'Baloo 2',cursive; margin-bottom:10px;">You're All Set!</h3>
+                    <p style="color:var(--text-light); font-size:0.9rem; margin-bottom:20px;">Welcome to SGGSCC Canteen! You can now place orders anytime.</p>
+                    <button class="btn btn-green" onclick="completeRegistration()" style="width:100%; justify-content:center;">Start Ordering 🍛</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js?v=2.0.0"></script>
+</body>
+</html>

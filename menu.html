@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu - SGGSCC Canteen</title>
+    <link rel="stylesheet" href="css/style.css?v=2.0.0">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍛</text></svg>">
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <a href="index.html" class="nav-logo">
+            <span class="logo-emoji">🍛</span>
+            <div class="logo-text">
+                SGGSCC Canteen
+                <span>Sri Guru Gobind Singh College</span>
+            </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="menu.html" class="active">Menu</a></li>
+            <li><a href="order.html">Order</a></li>
+            <li><a href="status.html">Track Order</a></li>
+            <li><a href="dashboard.html">Staff</a></li>
+            <li><a href="guidelines.html">Guidelines</a></li>
+            <li><a href="order.html" class="nav-cta">Order Now</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger">
+            <span></span><span></span><span></span>
+        </div>
+    </nav>
+
+    <!-- Menu Page -->
+    <section class="menu-section" style="padding-top: 100px; min-height: 100vh;">
+        <div class="section-header">
+            <div class="section-badge">Our Menu</div>
+            <h2>What's Cooking Today</h2>
+            <p>Fresh, homely, and pocket-friendly — just like your mom's kitchen, but in college!</p>
+        </div>
+
+        <!-- Peak Hours Banner -->
+        <div class="peak-hours-banner" style="max-width:1200px; margin: 0 auto 25px;">
+            <div class="peak-item">
+                <span class="peak-dot red"></span>
+                <span><strong>High Rush</strong> &nbsp; 12:30 – 1:00 PM</span>
+            </div>
+            <div class="peak-item">
+                <span class="peak-dot orange"></span>
+                <span><strong>Moderate</strong> &nbsp; 1:00 – 1:30 PM</span>
+            </div>
+            <div class="peak-item">
+                <span class="peak-dot green"></span>
+                <span><strong>Low Rush</strong> &nbsp; 3:00 – 4:00 PM</span>
+            </div>
+        </div>
+
+        <!-- Controls -->
+        <div class="menu-controls">
+            <div class="menu-search">
+                <span>🔍</span>
+                <input type="text" id="menuSearch" placeholder="Search for samosa, dosa, rajma...">
+            </div>
+            <div class="break-mode-toggle" id="breakModeToggle" onclick="toggleBreakMode()">
+                <span>⚡ 15-Min Break Mode</span>
+                <div class="toggle-switch"></div>
+            </div>
+        </div>
+
+        <!-- Categories -->
+        <div class="menu-categories" id="menuCategories">
+            <button class="category-btn active" data-category="all" onclick="filterCategory('all', this)">🍽️ All</button>
+            <button class="category-btn" data-category="snacks" onclick="filterCategory('snacks', this)">🍟 Snacks</button>
+            <button class="category-btn" data-category="meals" onclick="filterCategory('meals', this)">🍛 Meals</button>
+            <button class="category-btn" data-category="south-indian" onclick="filterCategory('south-indian', this)">🥘 South Indian</button>
+            <button class="category-btn" data-category="noodles" onclick="filterCategory('noodles', this)">🍜 Noodles</button>
+            <button class="category-btn" data-category="specials" onclick="filterCategory('specials', this)">👨‍🍳 Rumali Specials</button>
+            <button class="category-btn" data-category="beverages" onclick="filterCategory('beverages', this)">🥤 Beverages</button>
+        </div>
+
+        <!-- Menu Grid -->
+        <div class="menu-grid" id="menuGrid">
+            <!-- Snacks -->
+            <div class="menu-card" data-category="snacks" data-name="Aloo Patty" data-price="20" data-prep="5">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🥔</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">POPULAR</span>
+                    </div>
+                </div>
+                <h3>Aloo Patty</h3>
+                <div class="prep-time">⏱️ Ready in ~5 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹20</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Aloo Patty', 20, '🥔', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="snacks" data-name="Paneer Patty" data-price="25" data-prep="5">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🧀</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Paneer Patty</h3>
+                <div class="prep-time">⏱️ Ready in ~5 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹25</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Paneer Patty', 25, '🧀', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="snacks" data-name="Samosa" data-price="10" data-prep="3">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🔺</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">BESTSELLER</span>
+                    </div>
+                </div>
+                <h3>Samosa</h3>
+                <div class="prep-time">⏱️ Ready in ~3 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹10</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Samosa', 10, '🔺', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="snacks" data-name="Bread Pakoda" data-price="15" data-prep="5">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍞</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Bread Pakoda</h3>
+                <div class="prep-time">⏱️ Ready in ~5 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹15</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Bread Pakoda', 15, '🍞', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="snacks" data-name="French Fries" data-price="50" data-prep="7">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍟</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">POPULAR</span>
+                    </div>
+                </div>
+                <h3>French Fries</h3>
+                <div class="prep-time">⏱️ Ready in ~7 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('French Fries', 50, '🍟', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="snacks" data-name="Spring Roll" data-price="40" data-prep="6">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🌯</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Spring Roll</h3>
+                <div class="prep-time">⏱️ Ready in ~6 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹40</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Spring Roll', 40, '🌯', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="snacks" data-name="Chilly Potato" data-price="50" data-prep="8">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🌶️</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag spicy">SPICY</span>
+                    </div>
+                </div>
+                <h3>Chilly Potato</h3>
+                <div class="prep-time">⏱️ Ready in ~8 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Chilly Potato', 50, '🌶️', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="snacks" data-name="Honey Chilly Potato" data-price="50" data-prep="8">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍯</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag spicy">SPICY</span>
+                        <span class="dietary-tag popular">POPULAR</span>
+                    </div>
+                </div>
+                <h3>Honey Chilly Potato</h3>
+                <div class="prep-time">⏱️ Ready in ~8 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Honey Chilly Potato', 50, '🍯', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="snacks" data-name="Burger" data-price="50" data-prep="8">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍔</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Burger</h3>
+                <div class="prep-time">⏱️ Ready in ~8 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Burger', 50, '🍔', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="snacks" data-name="Vadapav" data-price="40" data-prep="5">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🥙</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag spicy">SPICY</span>
+                    </div>
+                </div>
+                <h3>Vadapav</h3>
+                <div class="prep-time">⏱️ Ready in ~5 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹40</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Vadapav', 40, '🥙', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="snacks" data-name="Cheese Corn Sandwich" data-price="50" data-prep="7">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🥪</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Cheese Corn Sandwich</h3>
+                <div class="prep-time">⏱️ Ready in ~7 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Cheese Corn Sandwich', 50, '🥪', this)">+</button>
+                </div>
+            </div>
+
+            <!-- Meals -->
+            <div class="menu-card" data-category="meals" data-name="Rajma Chawal" data-price="40" data-prep="8">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍛</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">BESTSELLER</span>
+                    </div>
+                </div>
+                <h3>Rajma Chawal</h3>
+                <div class="prep-time">⏱️ Ready in ~8 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹40</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Rajma Chawal', 40, '🍛', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="meals" data-name="Rajma Fried Rice" data-price="50" data-prep="10">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍚</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Rajma Fried Rice</h3>
+                <div class="prep-time">⏱️ Ready in ~10 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Rajma Fried Rice', 50, '🍚', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="meals" data-name="Fried Rice Manchurian" data-price="50" data-prep="10">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🥡</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag spicy">SPICY</span>
+                    </div>
+                </div>
+                <h3>Fried Rice Manchurian</h3>
+                <div class="prep-time">⏱️ Ready in ~10 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Fried Rice Manchurian', 50, '🥡', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="meals" data-name="Chole Rice" data-price="40" data-prep="8">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍲</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag spicy">SPICY</span>
+                    </div>
+                </div>
+                <h3>Chole Rice</h3>
+                <div class="prep-time">⏱️ Ready in ~8 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹40</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Chole Rice', 40, '🍲', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="meals" data-name="Chole Bhature" data-price="50" data-prep="10">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🫓</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">POPULAR</span>
+                    </div>
+                </div>
+                <h3>Chole Bhature</h3>
+                <div class="prep-time">⏱️ Ready in ~10 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Chole Bhature', 50, '🫓', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="meals" data-name="Chole Kulche" data-price="50" data-prep="10">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍞</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Chole Kulche</h3>
+                <div class="prep-time">⏱️ Ready in ~10 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Chole Kulche', 50, '🍞', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="meals" data-name="Pav Bhaji" data-price="50" data-prep="10">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍛</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">POPULAR</span>
+                    </div>
+                </div>
+                <h3>Pav Bhaji</h3>
+                <div class="prep-time">⏱️ Ready in ~10 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Pav Bhaji', 50, '🍛', this)">+</button>
+                </div>
+            </div>
+
+            <!-- South Indian -->
+            <div class="menu-card" data-category="south-indian" data-name="Masala Dosa" data-price="60" data-prep="10">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🥞</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">POPULAR</span>
+                    </div>
+                </div>
+                <h3>Masala Dosa</h3>
+                <div class="prep-time">⏱️ Ready in ~10 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹60</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Masala Dosa', 60, '🥞', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="south-indian" data-name="Uttapam Mix" data-price="70" data-prep="10">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🫓</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Uttapam Mix</h3>
+                <div class="prep-time">⏱️ Ready in ~10 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹70</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Uttapam Mix', 70, '🫓', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="south-indian" data-name="Onion Uttapam" data-price="70" data-prep="10">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🧅</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Onion Uttapam</h3>
+                <div class="prep-time">⏱️ Ready in ~10 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹70</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Onion Uttapam', 70, '🧅', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="south-indian" data-name="Onion Masala Dosa" data-price="70" data-prep="12">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🥞</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag spicy">SPICY</span>
+                    </div>
+                </div>
+                <h3>Onion Masala Dosa</h3>
+                <div class="prep-time">⏱️ Ready in ~12 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹70</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Onion Masala Dosa', 70, '🥞', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="south-indian" data-name="Idli Sambhar" data-price="50" data-prep="8">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍥</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag jain">JAIN OK</span>
+                    </div>
+                </div>
+                <h3>Idli Sambhar</h3>
+                <div class="prep-time">⏱️ Ready in ~8 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Idli Sambhar', 50, '🍥', this)">+</button>
+                </div>
+            </div>
+
+            <!-- Noodles -->
+            <div class="menu-card" data-category="noodles" data-name="Noodles" data-price="50" data-prep="10">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍜</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Noodles</h3>
+                <div class="prep-time">⏱️ Ready in ~10 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Noodles', 50, '🍜', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="noodles" data-name="Hakka Noodles" data-price="50" data-prep="10">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍝</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">POPULAR</span>
+                    </div>
+                </div>
+                <h3>Hakka Noodles</h3>
+                <div class="prep-time">⏱️ Ready in ~10 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹50</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Hakka Noodles', 50, '🍝', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="noodles" data-name="Singapuri Noodles" data-price="80" data-prep="12">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍜</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag spicy">SPICY</span>
+                    </div>
+                </div>
+                <h3>Singapuri Noodles</h3>
+                <div class="prep-time">⏱️ Ready in ~12 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹80</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Singapuri Noodles', 80, '🍜', this)">+</button>
+                </div>
+            </div>
+
+            <!-- Rumali Specials -->
+            <div class="menu-card" data-category="specials" data-name="Kadhai Paneer with Rumali" data-price="90" data-prep="15">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🧀</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag spicy">SPICY</span>
+                    </div>
+                </div>
+                <h3>Kadhai Paneer with Rumali</h3>
+                <div class="prep-time">⏱️ Ready in ~15 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹90</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Kadhai Paneer with Rumali', 90, '🧀', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="specials" data-name="Kadhai Chaap with Rumali" data-price="90" data-prep="15">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍖</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag spicy">SPICY</span>
+                    </div>
+                </div>
+                <h3>Kadhai Chaap with Rumali</h3>
+                <div class="prep-time">⏱️ Ready in ~15 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹90</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Kadhai Chaap with Rumali', 90, '🍖', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="specials" data-name="Shahi Paneer with Rumali" data-price="90" data-prep="15">
+                <div class="menu-card-header">
+                    <span class="item-emoji">👑</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">PREMIUM</span>
+                    </div>
+                </div>
+                <h3>Shahi Paneer with Rumali</h3>
+                <div class="prep-time">⏱️ Ready in ~15 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹90</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Shahi Paneer with Rumali', 90, '👑', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="specials" data-name="Masala Chaap with Rumali" data-price="80" data-prep="15">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🌶️</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag spicy">SPICY</span>
+                    </div>
+                </div>
+                <h3>Masala Chaap with Rumali</h3>
+                <div class="prep-time">⏱️ Ready in ~15 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹80</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Masala Chaap with Rumali', 80, '🌶️', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="specials" data-name="Shahi Chaap with Rumali" data-price="80" data-prep="15">
+                <div class="menu-card-header">
+                    <span class="item-emoji">✨</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                    </div>
+                </div>
+                <h3>Shahi Chaap with Rumali</h3>
+                <div class="prep-time">⏱️ Ready in ~15 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹80</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Shahi Chaap with Rumali', 80, '✨', this)">+</button>
+                </div>
+            </div>
+
+            <!-- Beverages -->
+            <div class="menu-card" data-category="beverages" data-name="Tea" data-price="10" data-prep="3">
+                <div class="menu-card-header">
+                    <span class="item-emoji">☕</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">BESTSELLER</span>
+                    </div>
+                </div>
+                <h3>Tea (Chai)</h3>
+                <div class="prep-time">⏱️ Ready in ~3 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹10</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Tea', 10, '☕', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="beverages" data-name="Cold Coffee" data-price="60" data-prep="5">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🧊</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag popular">POPULAR</span>
+                    </div>
+                </div>
+                <h3>Cold Coffee</h3>
+                <div class="prep-time">⏱️ Ready in ~5 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹60</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Cold Coffee', 60, '🧊', this)">+</button>
+                </div>
+            </div>
+
+            <div class="menu-card" data-category="beverages" data-name="Lemon Soda" data-price="30" data-prep="3">
+                <div class="menu-card-header">
+                    <span class="item-emoji">🍋</span>
+                    <div class="dietary-tags">
+                        <span class="dietary-tag veg">VEG</span>
+                        <span class="dietary-tag jain">JAIN OK</span>
+                    </div>
+                </div>
+                <h3>Lemon Soda</h3>
+                <div class="prep-time">⏱️ Ready in ~3 min</div>
+                <div class="menu-card-footer">
+                    <span class="price">₹30</span>
+                    <button class="add-to-cart-btn" onclick="addToCart('Lemon Soda', 30, '🍋', this)">+</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Floating Cart Button -->
+    <button class="cart-float-btn" id="cartFloatBtn" onclick="window.location.href='order.html'">
+        🛒
+        <span class="cart-count" id="cartCount">0</span>
+    </button>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-brand">
+                <div class="footer-logo">🍛 SGGSCC Canteen</div>
+                <p>Fresh, homely, pocket-friendly food for SGGSCC students. Pre-order and skip the line!</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <a href="index.html">Home</a>
+                <a href="menu.html">Menu</a>
+                <a href="order.html">Place Order</a>
+                <a href="status.html">Track Order</a>
+            </div>
+            <div class="footer-col">
+                <h4>More</h4>
+                <a href="dashboard.html">Staff Dashboard</a>
+                <a href="guidelines.html">Student Guidelines</a>
+            </div>
+            <div class="footer-col">
+                <h4>Timings</h4>
+                <a href="#">Mon–Sat: 9AM–5PM</a>
+                <a href="#">Sunday: Closed</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 SGGSCC Canteen. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Back to Top -->
+    <button class="back-to-top" id="backToTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <!-- Toast -->
+    <div class="toast" id="toast">
+        <span class="toast-emoji">✅</span>
+        <span class="toast-msg" id="toastMsg">Added to cart!</span>
+    </div>
+
+    <script src="js/main.js?v=2.0.0"></script>
+</body>
+</html>
